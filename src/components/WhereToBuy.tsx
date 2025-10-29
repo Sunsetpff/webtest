@@ -1,56 +1,45 @@
+import { useState, useEffect } from 'react';
 import { MapPin, ShoppingCart, ExternalLink } from 'lucide-react';
+import { supabase, type Retailer } from '../lib/supabase';
 
 export default function WhereToBuy() {
-  const retailers = [
-    {
-      name: 'Idea',
-      type: 'Supermarket Chain',
-      locations: '200+ stores nationwide',
-      logo: 'https://images.pexels.com/photos/3962285/pexels-photo-3962285.jpeg?auto=compress&cs=tinysrgb&w=100&h=100'
-    },
-    {
-      name: 'Univerexport',
-      type: 'Supermarket Chain',
-      locations: '150+ stores nationwide',
-      logo: 'https://images.pexels.com/photos/264636/pexels-photo-264636.jpeg?auto=compress&cs=tinysrgb&w=100&h=100'
-    },
-    {
-      name: 'Gomex',
-      type: 'Retail Chain',
-      locations: '100+ stores nationwide',
-      logo: 'https://images.pexels.com/photos/1005638/pexels-photo-1005638.jpeg?auto=compress&cs=tinysrgb&w=100&h=100'
-    },
-    {
-      name: 'Maxi',
-      type: 'Hypermarket Chain',
-      locations: '80+ stores nationwide',
-      logo: 'https://images.pexels.com/photos/1797428/pexels-photo-1797428.jpeg?auto=compress&cs=tinysrgb&w=100&h=100'
-    },
-    {
-      name: 'DIS',
-      type: 'Discount Chain',
-      locations: '120+ stores nationwide',
-      logo: 'https://images.pexels.com/photos/6238297/pexels-photo-6238297.jpeg?auto=compress&cs=tinysrgb&w=100&h=100'
-    },
-    {
-      name: 'Tempo',
-      type: 'Supermarket Chain',
-      locations: '90+ stores nationwide',
-      logo: 'https://images.pexels.com/photos/2292919/pexels-photo-2292919.jpeg?auto=compress&cs=tinysrgb&w=100&h=100'
-    },
-    {
-      name: 'Aman',
-      type: 'Retail Chain',
-      locations: '60+ stores nationwide',
-      logo: 'https://images.pexels.com/photos/4050315/pexels-photo-4050315.jpeg?auto=compress&cs=tinysrgb&w=100&h=100'
-    },
-    {
-      name: 'Roda',
-      type: 'Supermarket Chain',
-      locations: '50+ stores nationwide',
-      logo: 'https://images.pexels.com/photos/5632402/pexels-photo-5632402.jpeg?auto=compress&cs=tinysrgb&w=100&h=100'
+  const [retailers, setRetailers] = useState<Retailer[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    loadRetailers();
+  }, []);
+
+  const loadRetailers = async () => {
+    const { data } = await supabase
+      .from('retailers')
+      .select('*')
+      .eq('is_active', true)
+      .order('display_order');
+
+    if (data) setRetailers(data);
+    setLoading(false);
+  };
+
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
     }
-  ];
+  };
+
+  if (loading) {
+    return (
+      <div className="py-24 bg-gradient-to-br from-gray-50 to-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center">Loading retailers...</div>
+        </div>
+      </div>
+    );
+  }
+
+  const serbianRetailers = retailers.filter(r => r.country === 'Serbia');
+  const internationalRetailers = retailers.filter(r => r.country !== 'Serbia');
 
   return (
     <div className="py-24 bg-gradient-to-br from-gray-50 to-white">
@@ -65,28 +54,26 @@ export default function WhereToBuy() {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
-          {retailers.map((retailer, index) => (
-            <div
-              key={index}
-              className="bg-white rounded-xl shadow-md hover:shadow-xl transition-all p-6 border border-gray-100 hover:border-green-200"
-            >
-              <div className="w-16 h-16 bg-gradient-to-br from-green-100 to-green-200 rounded-lg mb-4 overflow-hidden">
-                <img
-                  src={retailer.logo}
-                  alt={retailer.name}
-                  className="w-full h-full object-cover mix-blend-multiply opacity-60"
-                />
+        {serbianRetailers.length > 0 && (
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+            {serbianRetailers.map((retailer) => (
+              <div
+                key={retailer.id}
+                className="bg-white rounded-xl shadow-md hover:shadow-xl transition-all p-6 border border-gray-100 hover:border-green-200"
+              >
+                <div className="w-16 h-16 bg-gradient-to-br from-green-100 to-green-200 rounded-lg mb-4 flex items-center justify-center">
+                  <span className="text-2xl font-bold text-green-700">{retailer.name.charAt(0)}</span>
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 mb-2">{retailer.name}</h3>
+                <p className="text-sm text-gray-600 mb-3">{retailer.type}</p>
+                <div className="flex items-center space-x-2 text-sm text-gray-700">
+                  <MapPin className="w-4 h-4 text-green-700" />
+                  <span>{retailer.locations}</span>
+                </div>
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-2">{retailer.name}</h3>
-              <p className="text-sm text-gray-600 mb-3">{retailer.type}</p>
-              <div className="flex items-center space-x-2 text-sm text-gray-700">
-                <MapPin className="w-4 h-4 text-green-700" />
-                <span>{retailer.locations}</span>
-              </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        )}
 
         <div className="grid md:grid-cols-3 gap-8 mb-16">
           <div className="bg-white rounded-2xl shadow-lg p-8 text-center">
@@ -105,7 +92,10 @@ export default function WhereToBuy() {
             </div>
             <h3 className="text-xl font-bold text-gray-900 mb-3">Nationwide Coverage</h3>
             <p className="text-gray-600 leading-relaxed">
-              With 800+ retail locations across Serbia, you're never far from Fino Integrino products.
+              With {serbianRetailers.reduce((sum, r) => {
+                const match = r.locations.match(/(\d+)\+/);
+                return sum + (match ? parseInt(match[1]) : 0);
+              }, 0)}+ retail locations across Serbia, you're never far from Fino Integrino products.
             </p>
           </div>
 
@@ -130,10 +120,7 @@ export default function WhereToBuy() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <button
-              onClick={() => {
-                const element = document.getElementById('partnership');
-                if (element) element.scrollIntoView({ behavior: 'smooth' });
-              }}
+              onClick={() => scrollToSection('partnership')}
               className="bg-white text-green-700 px-8 py-3 rounded-lg font-medium hover:bg-green-50 transition-colors"
             >
               Retailer Partnerships
@@ -147,35 +134,38 @@ export default function WhereToBuy() {
           </div>
         </div>
 
-        <div className="mt-16 bg-white rounded-2xl shadow-lg p-8">
-          <h3 className="text-2xl font-bold text-gray-900 mb-6 text-center">
-            International Availability
-          </h3>
-          <div className="grid md:grid-cols-2 gap-8">
-            <div className="flex items-start space-x-4">
-              <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                <MapPin className="w-6 h-6 text-green-700" />
-              </div>
-              <div>
-                <h4 className="font-bold text-gray-900 mb-2">Croatia</h4>
-                <p className="text-gray-600">
-                  Available through our distribution partners in major Croatian cities. Expanding coverage across the region.
-                </p>
-              </div>
-            </div>
-            <div className="flex items-start space-x-4">
-              <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                <MapPin className="w-6 h-6 text-green-700" />
-              </div>
-              <div>
-                <h4 className="font-bold text-gray-900 mb-2">Slovenia</h4>
-                <p className="text-gray-600">
-                  Growing presence through established distribution networks. Contact us for specific retailer information.
-                </p>
-              </div>
+        {internationalRetailers.length > 0 && (
+          <div className="mt-16 bg-white rounded-2xl shadow-lg p-8">
+            <h3 className="text-2xl font-bold text-gray-900 mb-6 text-center">
+              International Availability
+            </h3>
+            <div className="grid md:grid-cols-2 gap-8">
+              {Array.from(new Set(internationalRetailers.map(r => r.country))).map((country) => {
+                const countryRetailers = internationalRetailers.filter(r => r.country === country);
+                return (
+                  <div key={country} className="flex items-start space-x-4">
+                    <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <MapPin className="w-6 h-6 text-green-700" />
+                    </div>
+                    <div>
+                      <h4 className="font-bold text-gray-900 mb-2">{country}</h4>
+                      <p className="text-gray-600 mb-2">
+                        Available through our distribution partners in major cities.
+                      </p>
+                      {countryRetailers.length > 0 && (
+                        <ul className="text-sm text-gray-600 space-y-1">
+                          {countryRetailers.map((retailer) => (
+                            <li key={retailer.id}>• {retailer.name} - {retailer.locations}</li>
+                          ))}
+                        </ul>
+                      )}
+                    </div>
+                  </div>
+                );
+              })}
             </div>
           </div>
-        </div>
+        )}
       </div>
     </div>
   );

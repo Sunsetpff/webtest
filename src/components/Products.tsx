@@ -1,31 +1,43 @@
+import { useState, useEffect } from 'react';
 import { Leaf, Heart, ShieldCheck, Wheat } from 'lucide-react';
+import { supabase, type Product, type SiteImage } from '../lib/supabase';
 
 export default function Products() {
-  const products = [
-    {
-      name: 'Integral Breadsticks',
-      description: 'Crunchy, wholesome breadsticks made with 100% integral flour. Perfect for snacking or pairing with your favorite dips.',
-      image: 'https://images.pexels.com/photos/1775283/pexels-photo-1775283.jpeg?auto=compress&cs=tinysrgb&w=800',
-      flavors: ['Classic', 'Sesame', 'Rosemary', 'Multi-grain'],
-      benefits: ['No Added Sugar', 'High Fiber', 'Vegan', 'Palm-Free']
-    },
-    {
-      name: 'Oat Bars - Classic',
-      description: 'Nutritious oat bars that deliver sustained energy without the sugar crash. Made with premium oats and natural ingredients.',
-      image: 'https://images.pexels.com/photos/5560763/pexels-photo-5560763.jpeg?auto=compress&cs=tinysrgb&w=800',
-      flavors: ['Natural Oat', 'Honey & Nuts', 'Dark Chocolate', 'Cranberry'],
-      benefits: ['No Added Sugar', 'Rich in Fiber', 'Vegan', 'Clean Label']
-    },
-    {
-      name: 'Oat Bars - Premium',
-      description: 'Our premium line featuring exotic flavors and superfoods. Crafted for health-conscious consumers seeking exceptional taste.',
-      image: 'https://images.pexels.com/photos/7262775/pexels-photo-7262775.jpeg?auto=compress&cs=tinysrgb&w=800',
-      flavors: ['Matcha Green Tea', 'Coconut & Mango', 'Blueberry', 'Protein Plus'],
-      benefits: ['No Added Sugar', 'Superfood Ingredients', 'Vegan', 'High Protein']
-    }
-  ];
+  const [products, setProducts] = useState<(Product & { image?: SiteImage })[]>([]);
+  const [loading, setLoading] = useState(true);
 
-  const benefitIcons = {
+  useEffect(() => {
+    loadProducts();
+  }, []);
+
+  const loadProducts = async () => {
+    const { data: productsData } = await supabase
+      .from('products')
+      .select('*')
+      .eq('is_active', true)
+      .order('display_order');
+
+    if (productsData) {
+      const productsWithImages = await Promise.all(
+        productsData.map(async (product) => {
+          if (product.image_id) {
+            const { data: imageData } = await supabase
+              .from('site_images')
+              .select('*')
+              .eq('id', product.image_id)
+              .maybeSingle();
+
+            return { ...product, image: imageData || undefined };
+          }
+          return product;
+        })
+      );
+      setProducts(productsWithImages);
+    }
+    setLoading(false);
+  };
+
+  const benefitIcons: Record<string, typeof Heart> = {
     'No Added Sugar': Heart,
     'High Fiber': Wheat,
     'Vegan': Leaf,
@@ -35,6 +47,23 @@ export default function Products() {
     'Superfood Ingredients': Leaf,
     'High Protein': Heart
   };
+
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  if (loading) {
+    return (
+      <div className="py-24 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center">Loading products...</div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="py-24 bg-white">
@@ -48,12 +77,12 @@ export default function Products() {
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-          {products.map((product, index) => (
-            <div key={index} className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+          {products.map((product) => (
+            <div key={product.id} className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
               <div className="aspect-video overflow-hidden bg-gray-100">
                 <img
-                  src={product.image}
-                  alt={product.name}
+                  src={product.image?.url || 'https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=800'}
+                  alt={product.image?.alt_text || product.name}
                   className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
                 />
               </div>
@@ -76,7 +105,7 @@ export default function Products() {
                   <h4 className="text-sm font-semibold text-gray-900 mb-2">Key Benefits:</h4>
                   <div className="space-y-2">
                     {product.benefits.map((benefit, idx) => {
-                      const Icon = benefitIcons[benefit as keyof typeof benefitIcons] || ShieldCheck;
+                      const Icon = benefitIcons[benefit] || ShieldCheck;
                       return (
                         <div key={idx} className="flex items-center space-x-2">
                           <Icon className="w-4 h-4 text-green-700" />
@@ -100,10 +129,7 @@ export default function Products() {
                 Perfect for retailers looking to expand their healthy snack offerings.
               </p>
               <button
-                onClick={() => {
-                  const element = document.getElementById('partnership');
-                  if (element) element.scrollIntoView({ behavior: 'smooth' });
-                }}
+                onClick={() => scrollToSection('partnership')}
                 className="bg-green-700 text-white px-8 py-3 rounded-lg font-medium hover:bg-green-800 transition-colors"
               >
                 Learn About Private Label

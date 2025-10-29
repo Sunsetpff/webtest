@@ -1,12 +1,59 @@
+import { useState, useEffect } from 'react';
 import { ArrowRight, ShoppingBag, Handshake } from 'lucide-react';
+import { supabase, type HeroContent, type SiteImage } from '../lib/supabase';
 
 export default function Hero() {
+  const [hero, setHero] = useState<HeroContent | null>(null);
+  const [heroImage, setHeroImage] = useState<SiteImage | null>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    loadHeroContent();
+  }, []);
+
+  const loadHeroContent = async () => {
+    const { data: heroData } = await supabase
+      .from('hero_content')
+      .select('*')
+      .eq('is_active', true)
+      .maybeSingle();
+
+    if (heroData) {
+      setHero(heroData);
+
+      if (heroData.image_id) {
+        const { data: imageData } = await supabase
+          .from('site_images')
+          .select('*')
+          .eq('id', heroData.image_id)
+          .maybeSingle();
+
+        if (imageData) setHeroImage(imageData);
+      }
+    }
+    setLoading(false);
+  };
+
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
     }
   };
+
+  if (loading) {
+    return (
+      <div className="relative bg-gradient-to-br from-green-50 via-white to-green-50 pt-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-32">
+          <div className="text-center">Loading...</div>
+        </div>
+      </div>
+    );
+  }
+
+  const defaultHeadline = "Premium Healthy Food Solutions for Your Business";
+  const defaultSubheadline = "Discover our range of integral breadsticks and oat bars. No added sugar, vegan-friendly, rich in fiber, and palm-free. Trusted by leading retailers across Serbia and beyond.";
+  const defaultImage = "https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=800";
 
   return (
     <div className="relative bg-gradient-to-br from-green-50 via-white to-green-50 pt-20">
@@ -17,11 +64,10 @@ export default function Hero() {
               Acta Non Verba - Actions, Not Words
             </div>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight mb-6">
-              Premium Healthy Food Solutions for Your Business
+              {hero?.headline || defaultHeadline}
             </h1>
             <p className="text-lg md:text-xl text-gray-600 mb-8 leading-relaxed">
-              Discover our range of integral breadsticks and oat bars. No added sugar, vegan-friendly,
-              rich in fiber, and palm-free. Trusted by leading retailers across Serbia and beyond.
+              {hero?.subheadline || defaultSubheadline}
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <button
@@ -29,7 +75,7 @@ export default function Hero() {
                 className="flex items-center justify-center space-x-2 bg-green-700 text-white px-8 py-4 rounded-lg font-medium hover:bg-green-800 transition-all hover:shadow-lg"
               >
                 <Handshake className="w-5 h-5" />
-                <span>Partner with Us</span>
+                <span>{hero?.cta_primary_text || 'Partner with Us'}</span>
                 <ArrowRight className="w-5 h-5" />
               </button>
               <button
@@ -37,7 +83,7 @@ export default function Hero() {
                 className="flex items-center justify-center space-x-2 bg-white text-green-700 px-8 py-4 rounded-lg font-medium border-2 border-green-700 hover:bg-green-50 transition-all"
               >
                 <ShoppingBag className="w-5 h-5" />
-                <span>Find Our Products</span>
+                <span>{hero?.cta_secondary_text || 'Find Our Products'}</span>
               </button>
             </div>
             <div className="mt-12 grid grid-cols-3 gap-8">
@@ -59,8 +105,8 @@ export default function Hero() {
           <div className="relative">
             <div className="aspect-square bg-gradient-to-br from-green-100 to-green-200 rounded-3xl shadow-2xl overflow-hidden">
               <img
-                src="https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=800"
-                alt="Healthy Food Products"
+                src={heroImage?.url || defaultImage}
+                alt={heroImage?.alt_text || "Healthy Food Products"}
                 className="w-full h-full object-cover mix-blend-multiply opacity-90"
               />
             </div>
