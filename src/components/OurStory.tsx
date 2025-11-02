@@ -10,7 +10,7 @@ export default function OurStory() {
               Quality Through Actions
             </h2>
             <p className="text-lg text-gray-600 mb-6 leading-relaxed">
-              At Fino Integrino, we live by our motto: <strong className="text-green-700">Acta Non Verba</strong> - Actions, Not Words.
+              At Fino Integrino, we live by our motto: <strong className="text-amber-700">Acta Non Verba</strong> - Actions, Not Words.
               We don't just talk about quality and health; we demonstrate it through every product we create.
             </p>
             <p className="text-lg text-gray-600 mb-6 leading-relaxed">
@@ -35,8 +35,8 @@ export default function OurStory() {
 
         <div className="grid md:grid-cols-2 gap-8 mb-20">
           <div className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow">
-            <div className="w-14 h-14 bg-green-100 rounded-xl flex items-center justify-center mb-6">
-              <Target className="w-7 h-7 text-green-700" />
+            <div className="w-14 h-14 bg-amber-100 rounded-xl flex items-center justify-center mb-6">
+              <Target className="w-7 h-7 text-amber-700" />
             </div>
             <h3 className="text-2xl font-bold text-gray-900 mb-4">Our Mission</h3>
             <p className="text-gray-600 leading-relaxed">
@@ -47,8 +47,8 @@ export default function OurStory() {
           </div>
 
           <div className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow">
-            <div className="w-14 h-14 bg-green-100 rounded-xl flex items-center justify-center mb-6">
-              <Eye className="w-7 h-7 text-green-700" />
+            <div className="w-14 h-14 bg-amber-100 rounded-xl flex items-center justify-center mb-6">
+              <Eye className="w-7 h-7 text-amber-700" />
             </div>
             <h3 className="text-2xl font-bold text-gray-900 mb-4">Our Vision</h3>
             <p className="text-gray-600 leading-relaxed">
@@ -59,7 +59,7 @@ export default function OurStory() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-green-700 to-green-800 rounded-3xl p-8 md:p-12 text-white">
+        <div className="bg-gradient-to-br from-amber-600 to-amber-700 rounded-3xl p-8 md:p-12 text-white">
           <h3 className="text-3xl md:text-4xl font-bold mb-12 text-center">Our Core Values</h3>
           <div className="grid md:grid-cols-3 gap-8">
             <div className="text-center">
@@ -67,7 +67,7 @@ export default function OurStory() {
                 <Award className="w-8 h-8" />
               </div>
               <h4 className="text-xl font-bold mb-3">Quality First</h4>
-              <p className="text-green-100 leading-relaxed">
+              <p className="text-amber-100 leading-relaxed">
                 We never compromise on quality. From raw material selection to final packaging,
                 excellence is our standard.
               </p>
@@ -78,7 +78,7 @@ export default function OurStory() {
                 <Users className="w-8 h-8" />
               </div>
               <h4 className="text-xl font-bold mb-3">Social Responsibility</h4>
-              <p className="text-green-100 leading-relaxed">
+              <p className="text-amber-100 leading-relaxed">
                 We're committed to sustainable practices and contributing positively to the communities
                 we serve.
               </p>
@@ -89,7 +89,7 @@ export default function OurStory() {
                 <Target className="w-8 h-8" />
               </div>
               <h4 className="text-xl font-bold mb-3">Innovation</h4>
-              <p className="text-green-100 leading-relaxed">
+              <p className="text-amber-100 leading-relaxed">
                 Continuous innovation in recipes, processes, and products keeps us at the forefront
                 of the healthy food industry.
               </p>
@@ -99,19 +99,19 @@ export default function OurStory() {
 
         <div className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-6">
           <div className="text-center">
-            <div className="text-4xl font-bold text-green-700 mb-2">10+</div>
+            <div className="text-4xl font-bold text-amber-700 mb-2">10+</div>
             <div className="text-gray-600">Years Experience</div>
           </div>
           <div className="text-center">
-            <div className="text-4xl font-bold text-green-700 mb-2">3</div>
+            <div className="text-4xl font-bold text-amber-700 mb-2">3</div>
             <div className="text-gray-600">Countries</div>
           </div>
           <div className="text-center">
-            <div className="text-4xl font-bold text-green-700 mb-2">15+</div>
+            <div className="text-4xl font-bold text-amber-700 mb-2">15+</div>
             <div className="text-gray-600">Product Variants</div>
           </div>
           <div className="text-center">
-            <div className="text-4xl font-bold text-green-700 mb-2">100%</div>
+            <div className="text-4xl font-bold text-amber-700 mb-2">100%</div>
             <div className="text-gray-600">Natural</div>
           </div>
         </div>

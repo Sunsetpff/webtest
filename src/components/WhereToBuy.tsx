@@ -59,15 +59,15 @@ export default function WhereToBuy() {
             {serbianRetailers.map((retailer) => (
               <div
                 key={retailer.id}
-                className="bg-white rounded-xl shadow-md hover:shadow-xl transition-all p-6 border border-gray-100 hover:border-green-200"
+                className="bg-white rounded-xl shadow-md hover:shadow-xl transition-all p-6 border border-gray-100 hover:border-amber-200"
               >
-                <div className="w-16 h-16 bg-gradient-to-br from-green-100 to-green-200 rounded-lg mb-4 flex items-center justify-center">
-                  <span className="text-2xl font-bold text-green-700">{retailer.name.charAt(0)}</span>
+                <div className="w-16 h-16 bg-gradient-to-br from-amber-100 to-amber-200 rounded-lg mb-4 flex items-center justify-center">
+                  <span className="text-2xl font-bold text-amber-700">{retailer.name.charAt(0)}</span>
                 </div>
                 <h3 className="text-xl font-bold text-gray-900 mb-2">{retailer.name}</h3>
                 <p className="text-sm text-gray-600 mb-3">{retailer.type}</p>
                 <div className="flex items-center space-x-2 text-sm text-gray-700">
-                  <MapPin className="w-4 h-4 text-green-700" />
+                  <MapPin className="w-4 h-4 text-amber-700" />
                   <span>{retailer.locations}</span>
                 </div>
               </div>
@@ -77,8 +77,8 @@ export default function WhereToBuy() {
 
         <div className="grid md:grid-cols-3 gap-8 mb-16">
           <div className="bg-white rounded-2xl shadow-lg p-8 text-center">
-            <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-              <ShoppingCart className="w-8 h-8 text-green-700" />
+            <div className="w-16 h-16 bg-amber-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <ShoppingCart className="w-8 h-8 text-amber-700" />
             </div>
             <h3 className="text-xl font-bold text-gray-900 mb-3">In-Store Availability</h3>
             <p className="text-gray-600 leading-relaxed">
@@ -87,8 +87,8 @@ export default function WhereToBuy() {
           </div>
 
           <div className="bg-white rounded-2xl shadow-lg p-8 text-center">
-            <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-              <MapPin className="w-8 h-8 text-green-700" />
+            <div className="w-16 h-16 bg-amber-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <MapPin className="w-8 h-8 text-amber-700" />
             </div>
             <h3 className="text-xl font-bold text-gray-900 mb-3">Nationwide Coverage</h3>
             <p className="text-gray-600 leading-relaxed">
@@ -100,8 +100,8 @@ export default function WhereToBuy() {
           </div>
 
           <div className="bg-white rounded-2xl shadow-lg p-8 text-center">
-            <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-              <ExternalLink className="w-8 h-8 text-green-700" />
+            <div className="w-16 h-16 bg-amber-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <ExternalLink className="w-8 h-8 text-amber-700" />
             </div>
             <h3 className="text-xl font-bold text-gray-900 mb-3">Growing Network</h3>
             <p className="text-gray-600 leading-relaxed">
@@ -110,24 +110,24 @@ export default function WhereToBuy() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-green-700 to-green-800 rounded-3xl p-8 md:p-12 text-white text-center">
+        <div className="bg-gradient-to-br from-amber-600 to-amber-700 rounded-3xl p-8 md:p-12 text-white text-center">
           <h3 className="text-3xl md:text-4xl font-bold mb-4">
             Can't Find Us in Your Store?
           </h3>
-          <p className="text-xl text-green-100 mb-8 max-w-2xl mx-auto">
+          <p className="text-xl text-amber-100 mb-8 max-w-2xl mx-auto">
             Let your local retailer know you'd like to see Fino Integrino products on their shelves.
             Customer requests make a difference!
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <button
               onClick={() => scrollToSection('partnership')}
-              className="bg-white text-green-700 px-8 py-3 rounded-lg font-medium hover:bg-green-50 transition-colors"
+              className="bg-white text-amber-700 px-8 py-3 rounded-lg font-medium hover:bg-amber-50 transition-colors"
             >
               Retailer Partnerships
             </button>
             <a
               href="mailto:info@finointegrino.rs"
-              className="bg-green-600 text-white px-8 py-3 rounded-lg font-medium hover:bg-green-500 transition-colors"
+              className="bg-amber-500 text-white px-8 py-3 rounded-lg font-medium hover:bg-amber-500 transition-colors"
             >
               Contact Us
             </a>
@@ -144,8 +144,8 @@ export default function WhereToBuy() {
                 const countryRetailers = internationalRetailers.filter(r => r.country === country);
                 return (
                   <div key={country} className="flex items-start space-x-4">
-                    <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                      <MapPin className="w-6 h-6 text-green-700" />
+                    <div className="w-12 h-12 bg-amber-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <MapPin className="w-6 h-6 text-amber-700" />
                     </div>
                     <div>
                       <h4 className="font-bold text-gray-900 mb-2">{country}</h4>

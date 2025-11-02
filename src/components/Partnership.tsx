@@ -32,7 +32,7 @@ export default function Partnership() {
     <div className="py-24 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <div className="inline-block mb-4 px-4 py-1.5 bg-green-100 text-green-800 rounded-full text-sm font-medium">
+          <div className="inline-block mb-4 px-4 py-1.5 bg-amber-100 text-amber-800 rounded-full text-sm font-medium">
             B2B Partnership Hub
           </div>
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
@@ -47,15 +47,15 @@ export default function Partnership() {
         <div className="grid md:grid-cols-3 gap-8 mb-20">
           {capabilities.map((capability, index) => (
             <div key={index} className="bg-gradient-to-br from-gray-50 to-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all border border-gray-100">
-              <div className="w-14 h-14 bg-green-100 rounded-xl flex items-center justify-center mb-6">
-                <capability.icon className="w-7 h-7 text-green-700" />
+              <div className="w-14 h-14 bg-amber-100 rounded-xl flex items-center justify-center mb-6">
+                <capability.icon className="w-7 h-7 text-amber-700" />
               </div>
               <h3 className="text-2xl font-bold text-gray-900 mb-4">{capability.title}</h3>
               <p className="text-gray-600 mb-6 leading-relaxed">{capability.description}</p>
               <ul className="space-y-3">
                 {capability.features.map((feature, idx) => (
                   <li key={idx} className="flex items-start space-x-2">
-                    <CheckCircle2 className="w-5 h-5 text-green-700 flex-shrink-0 mt-0.5" />
+                    <CheckCircle2 className="w-5 h-5 text-amber-700 flex-shrink-0 mt-0.5" />
                     <span className="text-gray-700">{feature}</span>
                   </li>
                 ))}
@@ -64,7 +64,7 @@ export default function Partnership() {
           ))}
         </div>
 
-        <div className="bg-gradient-to-br from-green-700 to-green-800 rounded-3xl p-8 md:p-12 text-white mb-20">
+        <div className="bg-gradient-to-br from-amber-600 to-amber-700 rounded-3xl p-8 md:p-12 text-white mb-20">
           <h3 className="text-3xl md:text-4xl font-bold mb-8 text-center">Our Distribution Network</h3>
           <div className="grid md:grid-cols-3 gap-8">
             {distributors.map((distributor, index) => (
@@ -75,8 +75,8 @@ export default function Partnership() {
                 </div>
                 <ul className="space-y-2">
                   {distributor.partners.map((partner, idx) => (
-                    <li key={idx} className="flex items-center space-x-2 text-green-100">
-                      <span className="w-1.5 h-1.5 bg-green-300 rounded-full"></span>
+                    <li key={idx} className="flex items-center space-x-2 text-amber-100">
+                      <span className="w-1.5 h-1.5 bg-amber-300 rounded-full"></span>
                       <span>{partner}</span>
                     </li>
                   ))}
@@ -84,7 +84,7 @@ export default function Partnership() {
               </div>
             ))}
           </div>
-          <p className="text-center mt-8 text-green-100 text-lg">
+          <p className="text-center mt-8 text-amber-100 text-lg">
             Join our growing network of successful partners across the region
           </p>
         </div>
@@ -100,12 +100,12 @@ export default function Partnership() {
 
               <div className="space-y-6">
                 <div className="flex items-start space-x-4">
-                  <div className="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center flex-shrink-0">
-                    <Mail className="w-6 h-6 text-green-700" />
+                  <div className="w-12 h-12 bg-amber-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                    <Mail className="w-6 h-6 text-amber-700" />
                   </div>
                   <div>
                     <div className="font-semibold text-gray-900 mb-1">Email Us</div>
-                    <a href="mailto:b2b@finointegrino.rs" className="text-green-700 hover:text-green-800">
+                    <a href="mailto:b2b@finointegrino.rs" className="text-amber-700 hover:text-amber-800">
                       b2b@finointegrino.rs
                     </a>
                     <div className="text-sm text-gray-600 mt-1">Response within 24 hours</div>
@@ -113,12 +113,12 @@ export default function Partnership() {
                 </div>
 
                 <div className="flex items-start space-x-4">
-                  <div className="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center flex-shrink-0">
-                    <Phone className="w-6 h-6 text-green-700" />
+                  <div className="w-12 h-12 bg-amber-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                    <Phone className="w-6 h-6 text-amber-700" />
                   </div>
                   <div>
                     <div className="font-semibold text-gray-900 mb-1">Call Us</div>
-                    <a href="tel:+381234567890" className="text-green-700 hover:text-green-800">
+                    <a href="tel:+381234567890" className="text-amber-700 hover:text-amber-800">
                       +381 (0)23 456 7890
                     </a>
                     <div className="text-sm text-gray-600 mt-1">Monday - Friday, 9:00 - 17:00</div>
@@ -126,8 +126,8 @@ export default function Partnership() {
                 </div>
 
                 <div className="flex items-start space-x-4">
-                  <div className="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center flex-shrink-0">
-                    <Building2 className="w-6 h-6 text-green-700" />
+                  <div className="w-12 h-12 bg-amber-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                    <Building2 className="w-6 h-6 text-amber-700" />
                   </div>
                   <div>
                     <div className="font-semibold text-gray-900 mb-1">Visit Us</div>
@@ -148,7 +148,7 @@ export default function Partnership() {
                     </label>
                     <input
                       type="text"
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-700 focus:border-transparent outline-none transition"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-600 focus:border-transparent outline-none transition"
                       placeholder="Your company name"
                     />
                   </div>
@@ -158,7 +158,7 @@ export default function Partnership() {
                     </label>
                     <input
                       type="text"
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-700 focus:border-transparent outline-none transition"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-600 focus:border-transparent outline-none transition"
                       placeholder="Your name"
                     />
                   </div>
@@ -168,7 +168,7 @@ export default function Partnership() {
                     </label>
                     <input
                       type="email"
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-700 focus:border-transparent outline-none transition"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-600 focus:border-transparent outline-none transition"
                       placeholder="your@email.com"
                     />
                   </div>
@@ -176,7 +176,7 @@ export default function Partnership() {
                     <label className="block text-sm font-medium text-gray-700 mb-2">
                       Interest *
                     </label>
-                    <select className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-700 focus:border-transparent outline-none transition">
+                    <select className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-600 focus:border-transparent outline-none transition">
                       <option>Select your interest</option>
                       <option>Wholesale Distribution</option>
                       <option>Private Label Manufacturing</option>
@@ -190,13 +190,13 @@ export default function Partnership() {
                     </label>
                     <textarea
                       rows={4}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-700 focus:border-transparent outline-none transition resize-none"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-600 focus:border-transparent outline-none transition resize-none"
                       placeholder="Tell us about your business and partnership goals"
                     ></textarea>
                   </div>
                   <button
                     type="submit"
-                    className="w-full bg-green-700 text-white py-3 rounded-lg font-medium hover:bg-green-800 transition-colors"
+                    className="w-full bg-amber-600 text-white py-3 rounded-lg font-medium hover:bg-amber-700 transition-colors"
                   >
                     Submit Inquiry
                   </button>

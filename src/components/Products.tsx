@@ -94,7 +94,7 @@ export default function Products() {
                   <h4 className="text-sm font-semibold text-gray-900 mb-2">Available Flavors:</h4>
                   <div className="flex flex-wrap gap-2">
                     {product.flavors.map((flavor, idx) => (
-                      <span key={idx} className="px-3 py-1 bg-green-50 text-green-700 text-sm rounded-full">
+                      <span key={idx} className="px-3 py-1 bg-amber-50 text-amber-700 text-sm rounded-full">
                         {flavor}
                       </span>
                     ))}
@@ -108,7 +108,7 @@ export default function Products() {
                       const Icon = benefitIcons[benefit] || ShieldCheck;
                       return (
                         <div key={idx} className="flex items-center space-x-2">
-                          <Icon className="w-4 h-4 text-green-700" />
+                          <Icon className="w-4 h-4 text-amber-700" />
                           <span className="text-sm text-gray-700">{benefit}</span>
                         </div>
                       );
@@ -120,7 +120,7 @@ export default function Products() {
           ))}
         </div>
 
-        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-3xl p-8 md:p-12">
+        <div className="bg-gradient-to-br from-amber-50 to-amber-100 rounded-3xl p-8 md:p-12">
           <div className="grid md:grid-cols-2 gap-8 items-center">
             <div>
               <h3 className="text-3xl font-bold text-gray-900 mb-4">Custom Solutions Available</h3>
@@ -130,7 +130,7 @@ export default function Products() {
               </p>
               <button
                 onClick={() => scrollToSection('partnership')}
-                className="bg-green-700 text-white px-8 py-3 rounded-lg font-medium hover:bg-green-800 transition-colors"
+                className="bg-amber-600 text-white px-8 py-3 rounded-lg font-medium hover:bg-amber-700 transition-colors"
               >
                 Learn About Private Label
               </button>

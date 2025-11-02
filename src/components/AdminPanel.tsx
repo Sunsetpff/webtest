@@ -18,13 +18,13 @@ export default function AdminPanel() {
     <div className="min-h-screen bg-gray-50 py-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="bg-white rounded-lg shadow-lg overflow-hidden">
-          <div className="bg-gradient-to-r from-green-700 to-green-800 px-6 py-4">
+          <div className="bg-gradient-to-r from-amber-600 to-amber-700 px-6 py-4">
             <h1 className="text-2xl font-bold text-white">Content Management System</h1>
-            <p className="text-green-100 text-sm mt-1">Manage website images, products, and retailers</p>
+            <p className="text-amber-100 text-sm mt-1">Manage website images, products, and retailers</p>
           </div>
 
           {message && (
-            <div className={`mx-6 mt-4 p-4 rounded-lg ${message.type === 'success' ? 'bg-green-50 text-green-800' : 'bg-red-50 text-red-800'}`}>
+            <div className={`mx-6 mt-4 p-4 rounded-lg ${message.type === 'success' ? 'bg-amber-50 text-amber-800' : 'bg-red-50 text-red-800'}`}>
               {message.text}
             </div>
           )}
@@ -42,7 +42,7 @@ export default function AdminPanel() {
                   onClick={() => setActiveTab(tab.id as TabType)}
                   className={`flex items-center space-x-2 py-4 border-b-2 font-medium text-sm transition-colors ${
                     activeTab === tab.id
-                      ? 'border-green-700 text-green-700'
+                      ? 'border-amber-700 text-amber-700'
                       : 'border-transparent text-gray-500 hover:text-gray-700'
                   }`}
                 >
@@ -159,12 +159,12 @@ function ImagesManager({ showMessage }: { showMessage: (type: 'success' | 'error
             placeholder="Image Name"
             value={newImage.name}
             onChange={(e) => setNewImage({ ...newImage, name: e.target.value })}
-            className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-700 focus:border-transparent outline-none"
+            className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-600 focus:border-transparent outline-none"
           />
           <select
             value={newImage.category}
             onChange={(e) => setNewImage({ ...newImage, category: e.target.value })}
-            className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-700 focus:border-transparent outline-none"
+            className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-600 focus:border-transparent outline-none"
           >
             <option value="hero">Hero</option>
             <option value="product">Product</option>
@@ -176,19 +176,19 @@ function ImagesManager({ showMessage }: { showMessage: (type: 'success' | 'error
             placeholder="Image URL"
             value={newImage.url}
             onChange={(e) => setNewImage({ ...newImage, url: e.target.value })}
-            className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-700 focus:border-transparent outline-none md:col-span-2"
+            className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-600 focus:border-transparent outline-none md:col-span-2"
           />
           <input
             type="text"
             placeholder="Alt Text (for accessibility)"
             value={newImage.alt_text}
             onChange={(e) => setNewImage({ ...newImage, alt_text: e.target.value })}
-            className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-700 focus:border-transparent outline-none md:col-span-2"
+            className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-600 focus:border-transparent outline-none md:col-span-2"
           />
         </div>
         <button
           onClick={handleAddImage}
-          className="mt-4 bg-green-700 text-white px-6 py-2 rounded-lg hover:bg-green-800 transition-colors flex items-center space-x-2"
+          className="mt-4 bg-amber-600 text-white px-6 py-2 rounded-lg hover:bg-amber-700 transition-colors flex items-center space-x-2"
         >
           <Plus className="w-4 h-4" />
           <span>Add Image</span>
@@ -223,7 +223,7 @@ function ImagesManager({ showMessage }: { showMessage: (type: 'success' | 'error
                   <div className="flex space-x-2">
                     <button
                       onClick={() => handleUpdateImage(editingImage)}
-                      className="flex-1 bg-green-700 text-white px-4 py-2 rounded-lg hover:bg-green-800 text-sm"
+                      className="flex-1 bg-amber-600 text-white px-4 py-2 rounded-lg hover:bg-amber-700 text-sm"
                     >
                       Save
                     </button>
@@ -248,7 +248,7 @@ function ImagesManager({ showMessage }: { showMessage: (type: 'success' | 'error
                   <div className="flex space-x-2">
                     <button
                       onClick={() => setEditingImage(image)}
-                      className="flex-1 bg-green-700 text-white px-3 py-1.5 rounded-lg hover:bg-green-800 text-sm"
+                      className="flex-1 bg-amber-600 text-white px-3 py-1.5 rounded-lg hover:bg-amber-700 text-sm"
                     >
                       Edit
                     </button>
@@ -321,7 +321,7 @@ function HeroManager({ showMessage }: { showMessage: (type: 'success' | 'error',
           type="text"
           value={hero.headline}
           onChange={(e) => setHero({ ...hero, headline: e.target.value })}
-          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-700 focus:border-transparent outline-none"
+          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-600 focus:border-transparent outline-none"
         />
       </div>
       <div>
@@ -330,7 +330,7 @@ function HeroManager({ showMessage }: { showMessage: (type: 'success' | 'error',
           value={hero.subheadline}
           onChange={(e) => setHero({ ...hero, subheadline: e.target.value })}
           rows={3}
-          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-700 focus:border-transparent outline-none"
+          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-600 focus:border-transparent outline-none"
         />
       </div>
       <div className="grid md:grid-cols-2 gap-4">
@@ -340,7 +340,7 @@ function HeroManager({ showMessage }: { showMessage: (type: 'success' | 'error',
             type="text"
             value={hero.cta_primary_text}
             onChange={(e) => setHero({ ...hero, cta_primary_text: e.target.value })}
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-700 focus:border-transparent outline-none"
+            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-600 focus:border-transparent outline-none"
           />
         </div>
         <div>
@@ -349,7 +349,7 @@ function HeroManager({ showMessage }: { showMessage: (type: 'success' | 'error',
             type="text"
             value={hero.cta_secondary_text}
             onChange={(e) => setHero({ ...hero, cta_secondary_text: e.target.value })}
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-700 focus:border-transparent outline-none"
+            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-600 focus:border-transparent outline-none"
           />
         </div>
       </div>
@@ -358,7 +358,7 @@ function HeroManager({ showMessage }: { showMessage: (type: 'success' | 'error',
         <select
           value={hero.image_id || ''}
           onChange={(e) => setHero({ ...hero, image_id: e.target.value || null })}
-          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-700 focus:border-transparent outline-none"
+          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-600 focus:border-transparent outline-none"
         >
           <option value="">Select an image</option>
           {images.map((img) => (
@@ -368,7 +368,7 @@ function HeroManager({ showMessage }: { showMessage: (type: 'success' | 'error',
       </div>
       <button
         onClick={handleSave}
-        className="bg-green-700 text-white px-6 py-2 rounded-lg hover:bg-green-800 transition-colors flex items-center space-x-2"
+        className="bg-amber-600 text-white px-6 py-2 rounded-lg hover:bg-amber-700 transition-colors flex items-center space-x-2"
       >
         <Save className="w-4 h-4" />
         <span>Save Changes</span>
@@ -481,14 +481,14 @@ function ProductsManager({ showMessage }: { showMessage: (type: 'success' | 'err
                   type="checkbox"
                   checked={editingProduct.is_active}
                   onChange={(e) => setEditingProduct({ ...editingProduct, is_active: e.target.checked })}
-                  className="w-4 h-4 text-green-700 focus:ring-green-700 rounded"
+                  className="w-4 h-4 text-amber-700 focus:ring-amber-600 rounded"
                 />
                 <label className="text-sm text-gray-700">Active (visible on website)</label>
               </div>
               <div className="flex space-x-2">
                 <button
                   onClick={() => handleUpdate(editingProduct)}
-                  className="bg-green-700 text-white px-6 py-2 rounded-lg hover:bg-green-800"
+                  className="bg-amber-600 text-white px-6 py-2 rounded-lg hover:bg-amber-700"
                 >
                   Save Changes
                 </button>
@@ -508,12 +508,12 @@ function ProductsManager({ showMessage }: { showMessage: (type: 'success' | 'err
                   <p className="text-gray-600 mt-1">{product.description}</p>
                 </div>
                 <div className="flex items-center space-x-2">
-                  <span className={`px-3 py-1 rounded-full text-sm ${product.is_active ? 'bg-green-100 text-green-800' : 'bg-gray-100 text-gray-600'}`}>
+                  <span className={`px-3 py-1 rounded-full text-sm ${product.is_active ? 'bg-amber-100 text-amber-800' : 'bg-gray-100 text-gray-600'}`}>
                     {product.is_active ? 'Active' : 'Inactive'}
                   </span>
                   <button
                     onClick={() => setEditingProduct(product)}
-                    className="bg-green-700 text-white px-4 py-2 rounded-lg hover:bg-green-800 text-sm"
+                    className="bg-amber-600 text-white px-4 py-2 rounded-lg hover:bg-amber-700 text-sm"
                   >
                     Edit
                   </button>
@@ -643,7 +643,7 @@ function RetailersManager({ showMessage }: { showMessage: (type: 'success' | 'er
         </div>
         <button
           onClick={handleAdd}
-          className="mt-4 bg-green-700 text-white px-6 py-2 rounded-lg hover:bg-green-800 flex items-center space-x-2"
+          className="mt-4 bg-amber-600 text-white px-6 py-2 rounded-lg hover:bg-amber-700 flex items-center space-x-2"
         >
           <Plus className="w-4 h-4" />
           <span>Add Retailer</span>
@@ -684,14 +684,14 @@ function RetailersManager({ showMessage }: { showMessage: (type: 'success' | 'er
                     type="checkbox"
                     checked={editingRetailer.is_active}
                     onChange={(e) => setEditingRetailer({ ...editingRetailer, is_active: e.target.checked })}
-                    className="w-4 h-4 text-green-700 rounded"
+                    className="w-4 h-4 text-amber-700 rounded"
                   />
                   <label className="text-sm">Active</label>
                 </div>
                 <div className="flex space-x-2">
                   <button
                     onClick={() => handleUpdate(editingRetailer)}
-                    className="flex-1 bg-green-700 text-white px-4 py-2 rounded-lg hover:bg-green-800"
+                    className="flex-1 bg-amber-600 text-white px-4 py-2 rounded-lg hover:bg-amber-700"
                   >
                     Save
                   </button>
@@ -711,12 +711,12 @@ function RetailersManager({ showMessage }: { showMessage: (type: 'success' | 'er
                   <p className="text-xs text-gray-500">{retailer.country}</p>
                 </div>
                 <div className="flex items-center space-x-2">
-                  <span className={`px-2 py-1 rounded-full text-xs ${retailer.is_active ? 'bg-green-100 text-green-800' : 'bg-gray-100 text-gray-600'}`}>
+                  <span className={`px-2 py-1 rounded-full text-xs ${retailer.is_active ? 'bg-amber-100 text-amber-800' : 'bg-gray-100 text-gray-600'}`}>
                     {retailer.is_active ? 'Active' : 'Inactive'}
                   </span>
                   <button
                     onClick={() => setEditingRetailer(retailer)}
-                    className="px-3 py-1 bg-green-700 text-white rounded-lg hover:bg-green-800 text-sm"
+                    className="px-3 py-1 bg-amber-600 text-white rounded-lg hover:bg-amber-700 text-sm"
                   >
                     Edit
                   </button>
