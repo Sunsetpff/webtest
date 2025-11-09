@@ -1,0 +1,21 @@
+{
+  "title": "Our Premium Products",
+  "description": "Discover our carefully curated collection of natural products",
+  "items": [
+    {
+      "name": "Organic Vanilla Extract",
+      "description": "Pure Madagascar vanilla with exceptional flavor",
+      "image": "https://images.pexels.com/photos/312418/pexels-photo-312418.jpeg"
+    },
+    {
+      "name": "Natural Honey Blend",
+      "description": "Raw, unfiltered honey from sustainable apiaries",
+      "image": "https://images.pexels.com/photos/3407851/pexels-photo-3407851.jpeg"
+    },
+    {
+      "name": "Herb Collection",
+      "description": "Premium dried herbs, freshly sourced",
+      "image": "https://images.pexels.com/photos/5632399/pexels-photo-5632399.jpeg"
+    }
+  ]
+}

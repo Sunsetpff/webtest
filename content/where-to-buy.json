@@ -1,0 +1,20 @@
+{
+  "title": "Where to Buy",
+  "retailers": [
+    {
+      "name": "Premium Market",
+      "url": "https://premiummarket.com",
+      "logo": "https://images.pexels.com/photos/5632399/pexels-photo-5632399.jpeg"
+    },
+    {
+      "name": "Natural Foods Co",
+      "url": "https://naturalfoods.com",
+      "logo": "https://images.pexels.com/photos/5632399/pexels-photo-5632399.jpeg"
+    },
+    {
+      "name": "Organic Direct",
+      "url": "https://organicdirect.com",
+      "logo": "https://images.pexels.com/photos/5632399/pexels-photo-5632399.jpeg"
+    }
+  ]
+}
