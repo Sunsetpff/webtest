@@ -1,10 +1,19 @@
 import { useState, useEffect } from 'react';
 import { ArrowRight, ShoppingBag, Handshake } from 'lucide-react';
-import { supabase, type HeroContent, type SiteImage } from '../lib/supabase';
+
+interface HeroContent {
+  heading: string;
+  subheading: string;
+  ctaText: string;
+  stats: {
+    organic: string;
+    sugars: string;
+    countries: string;
+  };
+}
 
 export default function Hero() {
   const [hero, setHero] = useState<HeroContent | null>(null);
-  const [heroImage, setHeroImage] = useState<SiteImage | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -12,24 +21,12 @@ export default function Hero() {
   }, []);
 
   const loadHeroContent = async () => {
-    const { data: heroData } = await supabase
-      .from('hero_content')
-      .select('*')
-      .eq('is_active', true)
-      .maybeSingle();
-
-    if (heroData) {
-      setHero(heroData);
-
-      if (heroData.image_id) {
-        const { data: imageData } = await supabase
-          .from('site_images')
-          .select('*')
-          .eq('id', heroData.image_id)
-          .maybeSingle();
-
-        if (imageData) setHeroImage(imageData);
-      }
+    try {
+      const response = await fetch('/content/hero.json');
+      const data = await response.json();
+      setHero(data);
+    } catch (error) {
+      console.error('Error loading hero content:', error);
     }
     setLoading(false);
   };
@@ -54,6 +51,7 @@ export default function Hero() {
   const defaultHeadline = "Premium Healthy Food Solutions for Your Business";
   const defaultSubheadline = "Discover our range of integral breadsticks and oat bars. No added sugar, vegan-friendly, rich in fiber, and palm-free. Trusted by leading retailers across Serbia and beyond.";
   const defaultImage = "https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=800";
+  const defaultStats = { organic: "100%", sugars: "0g", countries: "50+" };
 
   return (
     <div className="relative bg-gradient-to-br from-amber-50 via-white to-amber-50 pt-20">
@@ -64,7 +62,7 @@ export default function Hero() {
               Acta Non Verba - Actions, Not Words
             </div>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight mb-6">
-              {hero?.headline || defaultHeadline}
+              {hero?.heading || defaultHeadline}
             </h1>
             <p className="text-lg md:text-xl text-gray-600 mb-8 leading-relaxed">
               {hero?.subheadline || defaultSubheadline}
@@ -75,7 +73,7 @@ export default function Hero() {
                 className="flex items-center justify-center space-x-2 bg-amber-600 text-white px-8 py-4 rounded-lg font-medium hover:bg-amber-700 transition-all hover:shadow-lg"
               >
                 <Handshake className="w-5 h-5" />
-                <span>{hero?.cta_primary_text || 'Partner with Us'}</span>
+                <span>Partner with Us</span>
                 <ArrowRight className="w-5 h-5" />
               </button>
               <button
@@ -83,20 +81,20 @@ export default function Hero() {
                 className="flex items-center justify-center space-x-2 bg-white text-amber-700 px-8 py-4 rounded-lg font-medium border-2 border-amber-700 hover:bg-amber-50 transition-all"
               >
                 <ShoppingBag className="w-5 h-5" />
-                <span>{hero?.cta_secondary_text || 'Find Our Products'}</span>
+                <span>Find Our Products</span>
               </button>
             </div>
             <div className="mt-12 grid grid-cols-3 gap-8">
               <div>
-                <div className="text-3xl font-bold text-amber-700">100%</div>
+                <div className="text-3xl font-bold text-amber-700">{hero?.stats?.organic || defaultStats.organic}</div>
                 <div className="text-sm text-gray-600 mt-1">Natural Ingredients</div>
               </div>
               <div>
-                <div className="text-3xl font-bold text-amber-700">0g</div>
+                <div className="text-3xl font-bold text-amber-700">{hero?.stats?.sugars || defaultStats.sugars}</div>
                 <div className="text-sm text-gray-600 mt-1">Added Sugar</div>
               </div>
               <div>
-                <div className="text-3xl font-bold text-amber-700">50+</div>
+                <div className="text-3xl font-bold text-amber-700">{hero?.stats?.countries || defaultStats.countries}</div>
                 <div className="text-sm text-gray-600 mt-1">Retail Partners</div>
               </div>
             </div>
@@ -105,8 +103,8 @@ export default function Hero() {
           <div className="relative">
             <div className="aspect-square bg-gradient-to-br from-amber-100 to-amber-200 rounded-3xl shadow-2xl overflow-hidden">
               <img
-                src={heroImage?.url || defaultImage}
-                alt={heroImage?.alt_text || "Healthy Food Products"}
+                src={defaultImage}
+                alt="Healthy Food Products"
                 className="w-full h-full object-cover mix-blend-multiply opacity-90"
               />
             </div>

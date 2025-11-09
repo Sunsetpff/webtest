@@ -12,28 +12,26 @@ export default defineConfig({
   token: process.env.VITE_TINA_TOKEN || '',
   build: {
     outputDirectory: 'admin',
+    publicDir: 'public',
   },
   media: {
     tina: {
       mediaRoot: 'uploads',
-      publicFolder: 'public',
+      publicFolder: '/',
     },
   },
   schema: {
     collections: [
       {
-        label: 'Website Content',
-        name: 'website',
+        label: 'Hero Section',
+        name: 'hero',
         path: 'content',
         format: 'json',
         documents: [
           {
-            label: 'Hero Section',
+            label: 'Hero Content',
             name: 'hero',
             path: 'hero',
-            ui: {
-              previewSrc: '/src/components/Hero.tsx',
-            },
             fields: [
               {
                 type: 'string',
@@ -50,40 +48,33 @@ export default defineConfig({
               },
               {
                 type: 'string',
-                label: 'CTA Button Text',
-                name: 'ctaText',
+                label: 'Organic %',
+                name: 'organic_stat',
               },
               {
-                type: 'object',
-                label: 'Stats',
-                name: 'stats',
-                fields: [
-                  {
-                    type: 'string',
-                    label: 'Organic Percentage',
-                    name: 'organic',
-                  },
-                  {
-                    type: 'string',
-                    label: 'Added Sugars',
-                    name: 'sugars',
-                  },
-                  {
-                    type: 'string',
-                    label: 'Countries',
-                    name: 'countries',
-                  },
-                ],
+                type: 'string',
+                label: 'Added Sugars',
+                name: 'sugars_stat',
+              },
+              {
+                type: 'string',
+                label: 'Countries',
+                name: 'countries_stat',
               },
             ],
           },
+        ],
+      },
+      {
+        label: 'Products Section',
+        name: 'products',
+        path: 'content',
+        format: 'json',
+        documents: [
           {
-            label: 'Products Section',
+            label: 'Products',
             name: 'products',
             path: 'products',
-            ui: {
-              previewSrc: '/src/components/Products.tsx',
-            },
             fields: [
               {
                 type: 'string',
@@ -126,13 +117,18 @@ export default defineConfig({
               },
             ],
           },
+        ],
+      },
+      {
+        label: 'Our Story Section',
+        name: 'story',
+        path: 'content',
+        format: 'json',
+        documents: [
           {
-            label: 'Our Story Section',
+            label: 'Story',
             name: 'story',
             path: 'story',
-            ui: {
-              previewSrc: '/src/components/OurStory.tsx',
-            },
             fields: [
               {
                 type: 'string',
@@ -154,13 +150,18 @@ export default defineConfig({
               },
             ],
           },
+        ],
+      },
+      {
+        label: 'Partnership Section',
+        name: 'partnership',
+        path: 'content',
+        format: 'json',
+        documents: [
           {
-            label: 'Partnership Section',
+            label: 'Partnership',
             name: 'partnership',
             path: 'partnership',
-            ui: {
-              previewSrc: '/src/components/Partnership.tsx',
-            },
             fields: [
               {
                 type: 'string',
@@ -177,13 +178,18 @@ export default defineConfig({
               },
             ],
           },
+        ],
+      },
+      {
+        label: 'Where to Buy Section',
+        name: 'whereToBuy',
+        path: 'content',
+        format: 'json',
+        documents: [
           {
-            label: 'Where to Buy Section',
+            label: 'Where to Buy',
             name: 'whereToBuy',
             path: 'where-to-buy',
-            ui: {
-              previewSrc: '/src/components/WhereToBuy.tsx',
-            },
             fields: [
               {
                 type: 'string',
